@@ -13,10 +13,16 @@ function AddTransaction({ addTransaction }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!description.trim()) return;
-    const parsed = parseFloat(amount);
-    if (Number.isNaN(parsed)) return;
+    const parsed = Number(amount);
+    if (!Number.isFinite(parsed)) return;
 
-    addTransaction({ description: description.trim(), amount: parsed });
+    addTransaction({
+      id: Date.now(),
+      description: description.trim(),
+      amount: parsed,
+      type: parsed >= 0 ? "income" : "expense",
+      createdAt: Date.now()
+    });
     setDescription("");
     setAmount("");
     inputRef.current?.focus();

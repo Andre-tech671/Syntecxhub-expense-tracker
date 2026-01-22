@@ -20,7 +20,8 @@ function App() {
           const res = await fetch("/transactions.json");
           const seed = await res.json();
           setTransactions(seed);
-        } catch {
+        } catch (error) {
+          console.warn("Failed to load initial transactions:", error);
           setTransactions([]); // fallback
         } finally {
           setLoading(false);
@@ -36,7 +37,7 @@ function App() {
 
   // useCallback for stable handlers
   const addTransaction = useCallback((transaction) => {
-    setTransactions((prev) => [...prev, { id: Date.now(), ...transaction }]);
+    setTransactions((prev) => [...prev, transaction]);
   }, []);
 
   const removeTransaction = useCallback((id) => {

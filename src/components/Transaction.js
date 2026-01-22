@@ -1,9 +1,8 @@
-function Transaction({ transaction, removeTransaction }) {
-  const formatCurrency = (num) =>
-    num.toLocaleString("en-US", { style: "currency", currency: "USD" });
+import { formatCurrency } from "../utils/format";
 
+function Transaction({ transaction, removeTransaction }) {
   return (
-    <li className={`transaction ${transaction.amount > 0 ? "income" : "expense"}`}>
+    <li className={`transaction ${transaction.type || (transaction.amount > 0 ? "income" : "expense")}`}>
       <span>{transaction.description}</span>
       <span>
         {formatCurrency(transaction.amount)}

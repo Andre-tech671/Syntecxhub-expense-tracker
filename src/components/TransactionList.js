@@ -11,6 +11,11 @@ function TransactionList({ transactions, removeTransaction, loading }) {
             <span>Loading transactions...</span>
             <span>—</span>
           </li>
+        ) : transactions.length === 0 ? (
+          <li className="transaction">
+            <span>No transactions yet—add your first one.</span>
+            <span>—</span>
+          </li>
         ) : (
           [...transactions].reverse().map((t) => (
             <Transaction key={t.id} transaction={t} removeTransaction={removeTransaction} />
