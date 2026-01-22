@@ -1,0 +1,4 @@
+[
+  { "id": 101, "description": "Seed Income", "amount": 250 },
+  { "id": 102, "description": "Seed Expense", "amount": -75 }
+]
